@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "start": "npx nodemon server.js"
+  },
+  "name": "behappy",
+  "description": "Aplicação para pessoas compartilharem suas emoções em tempo real com seu amigos.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lancao2/beHappy.git"
+  },
+  "author": "Alex Lanção",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lancao2/beHappy/issues"
+  },
+  "homepage": "https://github.com/lancao2/beHappy#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.5.4",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
