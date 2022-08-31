@@ -1,17 +1,37 @@
-const Login = require("../models/LoginModel");
+const login = require("../models/LoginModel");
+const register = require("../models/RegisterModel");
+const session = require("express-session");
 
-exports.logar = (req, res) => {
-  res.send("Usuario registrado");
+exports.login = async (req, res) => {
+  try {
+    const Login = new login(req.body);
+    await Login.toLogin();
+    if (Login.errors.length > 0) {
+      Login.errors.forEach((element) => {
+        res.send(element);
+      });
+    } else {
+      res.send(Login.user); 
+    }
+  } catch (err) {
+    console.log(err);
+    res.send("error 404");
+  }
 };
 
 exports.register = async (req, res) => {
-  const login = new Login(req.body);
-  await login.register();
-  if (login.errors.length > 0) {
-    login.errors.forEach((element) => {
-      res.send(element);
-    });
-  } else {
-    res.send(login);
+  try {
+    const Register = new register(req.body);
+    await Register.register();
+    if (Register.errors.length > 0) {
+      Register.errors.forEach((element) => {
+        res.send(element);
+      });
+    } else {
+      res.send(Register);
+    }
+  } catch (err) {
+    console.log(err);
+    res.send("error 404");
   }
 };
