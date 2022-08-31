@@ -1,5 +1,5 @@
 const login = require("../models/LoginModel");
-const register = require("../models/RegisterModel");
+const UserRegister = require("../models/RegisterModel");
 const session = require("express-session");
 
 exports.login = async (req, res) => {
@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const Register = new register(req.body);
+    const Register = new UserRegister.register(req.body);
     await Register.register();
     if (Register.errors.length > 0) {
       Register.errors.forEach((element) => {
