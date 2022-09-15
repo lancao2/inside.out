@@ -2,21 +2,21 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
+
+
 const UserSchema = new mongoose.Schema({
+  _id: {type: Number, required: true},
   username: { type: String, required: true },
   mail: { type: String, required: true },
   password: { type: String, required: true },
-  friends: [],
-  emotions: [],
 });
 
 const registerModel = mongoose.model("User", UserSchema);
 
 class register {
   constructor(body) {
+    this.Id = 1;
     this.body = body;
-    this.emotions = [];
-    this.friends = [];
     this.errors = [];
     this.user = null;
   }
@@ -25,18 +25,34 @@ class register {
     this.validate();
     if (this.errors.length > 0) return;
 
-    await this.userExists();
+    this.newId()
 
+    await this.userExists();
+    
     if (this.errors.length > 0) return;
 
     const salt = bcrypt.genSaltSync();
     this.body.password = bcrypt.hashSync(this.body.password, salt);
-    this.user = await registerModel.create(this.body);
+    this.user = await registerModel.create({
+      _id: this.Id,
+      username: this.body.username,
+      mail: this.body.mail,
+      password: this.body.password,
+    });
   }
 
   async userExists() {
     this.user = await registerModel.findOne({ mail: this.body.mail });
     if (this.user) this.errors.push("user already exist");
+  }
+
+  async newId() {
+    let newId = Math.floor(Math.random() * 100);
+    this.Id = await registerModel.findOne({ Id: this.body.Id });
+    while ((newId === this.Id)) {
+      newId = Math.floor(Math.random() * 100);
+    }
+    this.Id = newId
   }
 
   validate() {
@@ -62,7 +78,7 @@ class register {
 
 const UserRegister = {
   register,
-  UserSchema
-}
+  UserSchema,
+};
 
 module.exports = UserRegister;

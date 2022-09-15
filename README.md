@@ -10,12 +10,17 @@ imediato.
 ### Back-end ###
     [x] - banco de dados.
 
-    [ ] - Registar usuario.
+    [x] - Registar usuario.
 
-    [ ] - Acessar com um Usuario.
+    [x] - Acessar com um Usuario.
 
     [ ] - Adcionar emoções a um usuario.
 
+    [ ] - enviar soliçitação de amizade.
+
+    [ ] - aceitar solicitação de amizade.
+
+    [ ] - recusar solisitação de amizade.
 
 ### Front-end ###
     [ ] - Figma

@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo');
 const flash = require('connect-flash')
 require('dotenv/config')
 
+
 mongoose.connect(process.env.CONNECTIONSTRING)
   .then(() => {
     console.log('executando')

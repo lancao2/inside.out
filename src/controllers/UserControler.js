@@ -2,6 +2,7 @@ const login = require("../models/LoginModel");
 const UserRegister = require("../models/RegisterModel");
 const session = require("express-session");
 
+
 exports.login = async (req, res) => {
   try {
     const Login = new login(req.body);
@@ -15,7 +16,7 @@ exports.login = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-    res.send("error 404");
+    res.send("error: 404");
   }
 };
 
@@ -26,12 +27,14 @@ exports.register = async (req, res) => {
     if (Register.errors.length > 0) {
       Register.errors.forEach((element) => {
         res.send(element);
+        return
       });
     } else {
-      res.send(Register);
+      res.send(Register.user);
+      
     }
   } catch (err) {
     console.log(err);
-    res.send("error 404");
+    res.status(401).send(err);
   }
 };
