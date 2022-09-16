@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
-
-
 const UserSchema = new mongoose.Schema({
-  _id: {type: Number, required: true},
+  _id: { type: Number, required: true },
   username: { type: String, required: true },
   mail: { type: String, required: true },
   password: { type: String, required: true },
+  emotions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Emotions",
+    },
+  ],
 });
 
 const registerModel = mongoose.model("User", UserSchema);
@@ -19,16 +23,16 @@ class register {
     this.body = body;
     this.errors = [];
     this.user = null;
+    this.token= ''
   }
 
   async register() {
     this.validate();
+    
     if (this.errors.length > 0) return;
 
-    this.newId()
-
     await this.userExists();
-    
+
     if (this.errors.length > 0) return;
 
     const salt = bcrypt.genSaltSync();
@@ -48,16 +52,20 @@ class register {
 
   async newId() {
     let newId = Math.floor(Math.random() * 100);
-    this.Id = await registerModel.findOne({ Id: this.body.Id });
-    while ((newId === this.Id)) {
+    this.Id = await registerModel.findOne({ Id: this.body._id });
+    while (newId === this.Id) {
       newId = Math.floor(Math.random() * 100);
     }
-    this.Id = newId
+    this.Id = newId;
   }
 
   validate() {
+    this.newId();
     this.manage();
-    if (!validator.isEmail(this.body.mail)) this.errors.push("invalid email");
+    console.log(this.body.mail);
+    if (!validator.isEmail(this.body.mail)) {
+      this.errors.push("invalid email");
+    }
     if (this.body.password.length < 5 || this.body.password.length > 20) {
       this.errors.push("incorrect amount of characters");
     }
@@ -74,6 +82,7 @@ class register {
       password: this.body.password,
     };
   }
+ 
 }
 
 const UserRegister = {
