@@ -24,7 +24,9 @@ exports.loginRequired = (req, res, next) => {
         if(err){
             return res.status(401).send("error: Invalid token")
         }
-        req._id = decoded._id;
+
+        const {_id} = decoded;
+        req._id = _id
         return next();
     });
     

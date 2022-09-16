@@ -10,7 +10,8 @@ route.post('/register' , UserControler.register)
 route.post('/login', UserControler.login)
 
 route.get("/emotions", loginRequired.loginRequired, EmotionsControler.listEmotions)
-route.post('/emotions',  EmotionsControler.addEmotion)
-route.put('/emotions', EmotionsControler.editEmotion)
+route.post('/emotions',  loginRequired.loginRequired, EmotionsControler.addEmotion)
+
+
 
 module.exports = route;
