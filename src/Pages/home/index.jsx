@@ -1,18 +1,25 @@
-import Emojes from "../../Components/Emojes"
-import { DivHomeInfo, DivHomeInfo_Info } from "./styles"
-const HomePage = () => {
-return(
-    <DivHomeInfo>
-        <DivHomeInfo_Info>
-            <h1>INSIDE OUT</h1>
-            <p>COLOQUE TODOS OS SENTIMENTOS QUE ESTÃO DENTRO DE VOCÊ PARA FORA.</p>
-            <button>EXPERIMENTAR</button>
-        </DivHomeInfo_Info>
-        <div>
-            <Emojes/>
-        </div>
-    </DivHomeInfo>
-)
-}
+import Emojes from "../../Components/Emojes";
+import { DivHome, DivHomeInfoInfo, TryButton } from "./styles";
+import { useHistory } from "react-router-dom";
 
-export default HomePage
+
+const HomePage = () => {
+    let history = useHistory();
+    function handleClick() {
+    history.push("/login");
+    }
+  return (
+    <DivHome>
+      <DivHomeInfoInfo>
+        <h1>INSIDE OUT</h1>
+        <p>COLOQUE TODOS OS SENTIMENTOS QUE ESTÃO DENTRO DE VOCÊ PARA FORA.</p>
+        <TryButton onClick={handleClick}>EXPERIMENTAR</TryButton>
+      </DivHomeInfoInfo>
+      <div>
+        <Emojes />
+      </div>
+    </DivHome>
+  );
+};
+
+export default HomePage;
