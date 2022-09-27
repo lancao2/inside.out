@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "start": "npx nodemon server.js"
+    "start": "npx nodemon server.ts",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./server.ts",
+    "build": "tsc"
   },
   "name": "behappy",
   "description": "Aplicação para pessoas compartilharem suas emoções em tempo real com seu amigos.",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "server.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lancao2/beHappy.git"
@@ -17,9 +19,19 @@
   },
   "homepage": "https://github.com/lancao2/beHappy#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "@types/express-session": "^1.17.5",
+    "connect-mongo": "^4.6.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongodb": "^4.10.0",
+    "mongoose": "^6.6.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.14"
+    "@types/express": "^4.17.14",
+    "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
+    "dotenv": "^16.0.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.3"
   }
 }
