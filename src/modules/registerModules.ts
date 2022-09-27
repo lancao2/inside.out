@@ -16,6 +16,7 @@ export class UserRegister {
   name: string;
   email: string;
   password: string;
+  emotions: Array<string>;
   errors: Array<string>;
 
   constructor(body: {
@@ -26,6 +27,7 @@ export class UserRegister {
     this.name = body.name
     this.email = body.email
     this.password = body.password
+    this.emotions = []
     this.errors = []
   }
 
@@ -40,7 +42,8 @@ export class UserRegister {
     await registerModel.create({
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      emotions: this.emotions
     })
   }
 
