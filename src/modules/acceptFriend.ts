@@ -22,7 +22,6 @@ export class accept {
         await this.getrequestId()
         if(this.errors.length > 0)return
         this.body = await FriendModel.findByIdAndUpdate(this.requestId, {isFriend: this.isFriend})
-        console.log(this.body);
         
         if(!this.body){
             this.errors.push("usuario não encontrado")
