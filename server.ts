@@ -1,15 +1,14 @@
 import express from "express";
+import process from "process";
 import route from "./routes";
 import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import * as dotenv from "dotenv";
+import { auth } from "./src/config";
 
 const app = express();
-dotenv.config();
 
-mongoose
-  .connect(process.env.MONGODB_CONNECT)
+mongoose.connect(auth.mongoConnect)
   .then(() => {
     app.emit("redy");
   })
@@ -17,7 +16,7 @@ mongoose
 
 const sessionOptions = session({
   secret: "hfa",
-  store: MongoStore.create({ mongoUrl: process.env.MONGODB_CONNECT }),
+  store: MongoStore.create({ mongoUrl: auth.mongoConnect}),
   resave: false,
   saveUninitialized: false,
   cookie: {
