@@ -9,3 +9,12 @@ export const auth = {
     expires: '1h',
   };
 
+export const defultEmotions = [
+  ":ANGRY:",
+  ":HAPPY:",
+  ":SAD:",
+  ":TENSE:",
+  ":FINE:",
+  ":FLIRTY:"
+]
+

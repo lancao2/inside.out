@@ -18,6 +18,7 @@ export class UserRegister {
     name?: string;
     email: string;
     password: string;
+    emotions: Array<string>
     
   }) {
     this.name = body.name;

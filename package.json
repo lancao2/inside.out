@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "npx nodemon server.ts",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./server.ts",
+    "dev": "ts-node-dev --inspect --files --transpile-only --ignore-watch node_modules ./server.ts",
     "build": "tsc"
   },
   "name": "behappy",
