@@ -10,6 +10,7 @@ export class UserRegister {
   email: string;
   password: string;
   emotions: Array<string>;
+  friend: Array<string>;
   errors: Array<string>;
   token: string;
   dbUser: any;
@@ -19,12 +20,14 @@ export class UserRegister {
     email: string;
     password: string;
     emotions: Array<string>
+    friend: Array<string>
     
   }) {
     this.name = body.name;
     this.email = body.email;
     this.password = body.password;
     this.emotions = [];
+    this.friend = []
     this.errors = [];
     this.token = ""
     this.dbUser = ''
@@ -43,6 +46,7 @@ export class UserRegister {
       email: this.email,
       password: this.password,
       emotions: this.emotions,
+      friend: this.friend,
     });
 
     this.dbUser = await UserModel.findOne({ email: this.email })
