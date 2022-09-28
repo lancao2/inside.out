@@ -5,7 +5,8 @@ import { register } from "./src/controller/registerController"
 import { newEmotion } from "./src/controller/emotionController";
 import { friendship } from "./src/controller/friendshipController";
 import { showFriendsRequest } from "./src/controller/showFriendesRequestController";
-import { acceptFriend } from "./src/controller/acceptFriend";
+import { acceptFriend } from "./src/controller/acceptFriendController";
+import { deleteFriend } from "./src/controller/deletFriendController";
 
 const route = Router()
 
@@ -20,5 +21,6 @@ route.post("/api/uploadEmotion", authMiddleware, newEmotion)
 route.post("/api/friendship", authMiddleware, friendship)
 route.get("/api/showFriendRequest", authMiddleware, showFriendsRequest)
 route.patch("/api/accept", authMiddleware, acceptFriend)
+route.delete("/api/delete", authMiddleware, deleteFriend)
 
 export default route

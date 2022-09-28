@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { accept } from "../modules/acceptFriend";
+import { accept } from "../modules/acceptFriendModules";
 
 export const acceptFriend = async (req: Request, res: Response) => {
     try {
