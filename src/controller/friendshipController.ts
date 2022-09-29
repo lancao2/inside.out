@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import { Friend } from "../modules/friendshipModules";
 
 export const friendship = async (req: Request, res: Response) => {
-    try {
-      const friend = new Friend(req);
-      await friend.makeFriendship();
+  try {
+    const friend = new Friend(req);
+    await friend.makeFriendship();
     if (friend.errors.length > 0) {
       res.status(406).json({ errors: friend.errors });
     }

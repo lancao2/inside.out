@@ -19,6 +19,7 @@ export class Friend{
 
     async makeFriendship(){
         this.dbUser = await UserModel.findOne({_id: this.user})
+        
         await this.getFriend()
         await this.validate()
 

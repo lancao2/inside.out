@@ -5,7 +5,8 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   avatar: { type: String, required: false },
-  emotions:[{type: mongoose.Schema.Types.ObjectId, ref: "Emotions"}]
+  emotions:[{type: mongoose.Schema.Types.ObjectId, ref: "Emotions"}],
+  friends:[{type: String, ref: "Friends"}]
 });
 
 export const UserModel = mongoose.model("Users", userSchema);

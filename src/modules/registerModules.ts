@@ -74,6 +74,6 @@ export class UserRegister {
   }
 
   giveToken(){
-    this.token = jwt.sign({id: this.email}, auth.secret, {expiresIn: auth.expires})
+    this.token = jwt.sign({id: this.dbUser._id}, auth.secret, {expiresIn: auth.expires})
   }
 }
