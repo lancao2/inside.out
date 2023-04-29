@@ -9,3 +9,69 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          String   @id @default(uuid())
+  username    String   @unique
+  name        String
+  surname     String?
+  email       String
+  password    String
+  is_active   Boolean  @default(true)
+  is_partiner Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  coins             Coins[]
+  feelings_avalible FeelingsAvailableTo[]
+
+  @@map("users")
+}
+
+model Feeling {
+  id           Int     @id @default(autoincrement())
+  group        String
+  name         String  @unique
+  description  String?
+  value        Int?    @default(0)
+  reward       Int     @default(0)
+  is_available Boolean @default(false)
+
+  coins             Coins[]
+  feelings_avalible FeelingsAvailableTo[]
+
+  @@map("feelings")
+}
+
+model Coins {
+  id         Int      @id @default(autoincrement())
+  user_id    String
+  feeling_id Int
+  created_at DateTime @default(now())
+
+  feeling Feeling @relation(fields: [feeling_id], references: [id])
+  user    User    @relation(fields: [user_id], references: [id])
+
+  @@map("coins")
+}
+
+model FeelingsAvailableTo {
+  id Int @id @default(autoincrement())
+
+  user_id    String
+  feeling_id Int
+  created_at DateTime @default(now())
+
+  feeling Feeling @relation(fields: [feeling_id], references: [id])
+  user    User    @relation(fields: [user_id], references: [id])
+
+  @@map("feelings_available_to_user")
+}
+
+model CoinsLog {
+  id Int @id @default(autoincrement())
+
+  user_id   String
+  is_reward Boolean
+  value     Int
+}
